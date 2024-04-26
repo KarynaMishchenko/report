@@ -18,5 +18,8 @@ Feature: Google Cloud functionality
     And I add a GPU with type "NVIDIA Tesla V100"
     And I select the number of GPUs
     And I choose local SSD size "2x375 GB"
-    Then I add the configuration to the estimate
+    And I add the configuration to the estimate
     And I send the estimate by email
+    And I enter email value in Email field
+    And I click on Send Email button
+    Then I see that prices are up to date

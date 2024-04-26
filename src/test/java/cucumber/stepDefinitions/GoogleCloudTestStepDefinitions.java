@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class GoogleCloudTestStepDefinitions {
     protected static WebDriver driver;
@@ -20,7 +21,6 @@ public class GoogleCloudTestStepDefinitions {
         // Initialize your dependencies here
         driver = DriverFactory.getDriver();
         this.homePage = new HomePage(driver, "test", 5);
-        this.pricingCalculatorPage = new PricingCalculatorPage(driver);
     }
     @Given("I am on the Google Cloud home page")
     public void i_am_on_the_google_cloud_home_page() {
@@ -72,7 +72,7 @@ public class GoogleCloudTestStepDefinitions {
 
     @And("I select the number of GPUs")
     public void i_select_the_number_of_gpus() {
-        // Selecting the number of GPUs was already handled in the previous step
+
     }
 
     @And("I choose local SSD size {string}")
@@ -80,7 +80,7 @@ public class GoogleCloudTestStepDefinitions {
         pricingCalculatorPage.clickOnLocalSSD().selectLocalSSD(ssdSize);
     }
 
-    @Then("I add the configuration to the estimate")
+    @And("I add the configuration to the estimate")
     public void i_add_the_configuration_to_the_estimate() {
         pricingCalculatorPage.addToEstimate();
     }
@@ -89,4 +89,18 @@ public class GoogleCloudTestStepDefinitions {
     public void i_send_the_estimate_by_email() {
         pricingCalculatorPage.emailEstimateClick();
     }
+    @And("I enter email value in Email field")
+    public void i_enter_email_value(){
+        pricingCalculatorPage.emailField("mishcenko@gmail.com");
+    }
+    @And("I click on Send Email button")
+    public void i_click_send_email_button(){
+        pricingCalculatorPage.sendEmailButtonClick();
+    }
+
+    @Then("I see that prices are up to date")
+    public void user_sees_email_your_estimate_form() {
+        Assert.assertTrue(pricingCalculatorPage.pricesText().getText().contains("Prices are up to date"));
+    }
+
 }

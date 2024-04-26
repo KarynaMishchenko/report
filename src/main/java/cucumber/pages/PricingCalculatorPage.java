@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static cucumber.pages.CalculatorFormPage.PAGE_URL;
+import static org.openqa.selenium.support.ui.ExpectedConditions.frameToBeAvailableAndSwitchToIt;
+
 public class PricingCalculatorPage {
     protected WebDriver driver;
     public String string;
@@ -46,6 +49,18 @@ public class PricingCalculatorPage {
     private WebElement addToEstimateField;
     @FindBy(xpath = "(//span[@class='google-symbols ng-scope'])[47]")
     private WebElement emailEstimateButton;
+
+    @FindBy(xpath = "//*[@id='dialogContent_614']/form/md-toolbar/h2")
+    private WebElement emailYourEstimateFormTitle;
+
+    @FindBy(xpath = "//*[@id='input_608']")
+    private WebElement emailField;
+
+    @FindBy(xpath = "//*[@id=\"dialogContent_614\"]/form/md-dialog-actions/button[2]")
+    private WebElement sendEmailButton;
+
+    @FindBy(xpath = "/html/body/md-content/md-card/md-toolbar/div/div[2]/p[1]")
+    private WebElement pricesText;
 
     public PricingCalculatorPage(WebDriver driver, String string, Integer integer) {
         this.driver = driver;
@@ -126,6 +141,19 @@ public class PricingCalculatorPage {
     public void emailEstimateClick(){
         waitForElementVisibility(emailEstimateButton).click();
     }
+    public WebElement emailYourEstimateFormTitle(){
+        return waitForElementVisibility(emailYourEstimateFormTitle);
+    }
+    public void emailField(String email){
+        waitForElementVisibility(emailField).sendKeys(email);;
+    }
+    public void sendEmailButtonClick(){
+        waitForElementVisibility(sendEmailButton).click();
+    }
+    public WebElement pricesText(){
+        return waitForElementVisibility(pricesText);
+    }
+
     private WebElement waitForElementVisibility(WebElement locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
