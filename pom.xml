@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xyz.selenide</groupId>
-    <artifactId>j-selenide</artifactId>
+    <artifactId>cucumber</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Selenide at XYZ Bank</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
         <aspectj.version>1.9.19</aspectj.version>
         <allure.version>2.24.0</allure.version>
         <cucumber.version>7.15.0</cucumber.version>
@@ -25,6 +25,11 @@
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.7.0</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
